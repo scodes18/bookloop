@@ -1,13 +1,13 @@
-# BookLoop - Book Rental & Exchange Platform
+# BookLoop - Book Reuse & Rental Platform
 
-A simple web application that allows users to share, rent, and sell books within their community.
+A simple web application that allows users to share, rent, and sell books within their community and reduce resource wastage.
 
 ## Project Goal
 
-BookLoop is a student-designed project addressing inefficiencies in educational resource usage, particularly in the Indian context where millions of students struggle with textbook affordability. The project originated from observing unused competitive exam books on shelves while peers couldn't access the same materials due to rising costs.
+BookLoop is a student-designed project addressing inefficiencies in educational resource usage, particularly in the Indian context, where millions of students struggle with textbook affordability. The project originated from observing unused competitive exam books on shelves, while peers couldn't access the same materials due to rising costs.
 This early-stage initiative focuses on:
 
-Addressing affordability - Enable students to access textbooks without financial burden.
+Addressing affordability - Enable students to access textbooks without a financial burden.
 
 Short-term usage solutions - Books needed only for exams or single semesters can be borrowed.
 
@@ -76,14 +76,14 @@ Start local server:
 python -m http.server 8000
 ```
 
-Open browser and go to `http://localhost:8000`
+Open a browser and go to `http://localhost:8000`
 
 ## Usage
 
 1. **Register** - Create a new account with username, email, password, and location
 2. **Login** - Sign in with your credentials
 3. **Add Books** - Go to "My Books" tab and click "+ Add Book"
-4. **Browse Books** - View all available books in "Browse Books" tab
+4. **Browse Books** - View all available books in the "Browse Books" tab
 5. **Request Books** - Click "Request Book" to rent or buy from owners
 
 ## Project Structure
@@ -113,7 +113,7 @@ bookloop/
 
 **Books:**
 - `GET /api/books` - Get all books
-- `GET /api/books/my` - Get user's books
+- `GET /api/books/my` - Get the user's books
 - `POST /api/books` - Add new book
 - `DELETE /api/books/<id>` - Delete book
 
@@ -130,15 +130,17 @@ bookloop/
 - Use `python -m http.server 8000` instead of opening HTML directly
 - Make sure backend is running on port 5000
 
-**Can't login after registration:**
+**Can't log in after registration:**
 - Check browser console (F12) for errors
 - Verify backend is running
 - Try clearing browser cache
 
 ## Future Improvements
 
+- In-app messaging for transaction logistics
 - Email notifications
 - User ratings and reviews
 - Image uploads for books
 - Advanced search filters
 - Mobile app
+   
