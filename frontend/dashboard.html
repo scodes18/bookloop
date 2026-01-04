@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - BookShare</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="dashboard">
+    <header class="header">
+        <h2>📚 BookShare</h2>
+        <div>
+            <span id="userNameDisplay" style="margin-right: 15px; color: #666; font-weight: 600;">User</span>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('browse')">Browse Books</button>
+            <button class="tab-btn" onclick="showTab('mybooks')">My Books</button>
+        </div>
+
+        <div id="browseTab">
+            <input type="text" id="searchInput" placeholder="Search by title or author..." oninput="filterBooks()">
+            <div id="booksGrid" class="books-grid"></div>
+        </div>
+
+        <div id="mybooksTab" class="hidden">
+            <button onclick="showAddBookModal()" style="padding: 14px 26px; background: #667eea; border: none; border-radius: 10px; color: #fff; font-weight: 600; cursor: pointer; margin-bottom: 20px;">
+                + Add Book
+            </button>
+            <div id="myBooksGrid" class="books-grid"></div>
+        </div>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - BookShare</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- REGISTER -->
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="logo">📚</div>
+            <h1>Create Account</h1>
+            <p>Join BookShare Community</p>
+        </div>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="regUsername" placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="regEmail" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="regPassword" placeholder="••••••••">
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="regLocation" placeholder="City/Area">
+        </div>
+
+        <button class="btn" onclick="handleRegister()">Register</button>
+
+        <p class="link-text">
+            Already have an account?
+            <a href="index.html">Login</a>
+        </p>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+const API_BASE = 'http://localhost:5000/api';
+
+async function handleRegister() {
+    const username = document.getElementById('regUsername').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const location = document.getElementById('regLocation').value.trim();
+
+    if (!username || !email || !password || !location) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, email, password, location })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Save token and user data
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            
+            alert('Registration successful! Redirecting to dashboard...');
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        } else {
+            alert(data.message || 'Registration failed');
+        }
+    } catch (error) {
+        console.error('Registration error:', error);
+        alert('Registration failed. Make sure the backend is running on http://localhost:5000');
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - BookShare</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="logo">📚</div>
+            <h1>BookShare</h1>
+            <p>Share, Rent, Save Together</p>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••">
+        </div>
+
+        <button class="btn" onclick="handleLogin()">Login</button>
+
+        <p class="link-text">
+            Don't have an account?
+            <a href="register.html">Register</a>
+        </p>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+const API_BASE = 'http://localhost:5000/api';
+
+// Check if already logged in
+window.onload = function() {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        window.location.href = 'dashboard.html';
+    }
+};
+
+async function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    if (!email || !password) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Save token and user data
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        } else {
+            alert(data.message || 'Login failed');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed. Make sure the backend is running on http://localhost:5000');
+    }
+}
+</script>
+
+</body>
+</html>
