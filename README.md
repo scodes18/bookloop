@@ -4,12 +4,22 @@ A simple web application that allows users to share, rent, and sell books within
 
 ## Project Goal
 
-BookShare helps people:
-- Share books with others in their community
-- Rent books instead of buying new ones
-- Sell books they no longer need
-- Save money and reduce book waste
-- Connect with local readers
+BookLoop is a student-designed project addressing inefficiencies in educational resource usage, particularly in the Indian context where millions of students struggle with textbook affordability. The project originated from observing unused competitive exam books on shelves while peers couldn't access the same materials due to rising costs.
+This early-stage initiative focuses on:
+
+Addressing affordability - Enable students to access textbooks without financial burden.
+
+Short-term usage solutions - Books needed only for exams or single semesters can be borrowed.
+
+Curriculum continuity - School students can use slightly older editions instead of buying new books for minor curriculum updates.
+
+Reducing paper waste - Maximize utilization of existing books instead of buying new ones.
+
+Equal access to education - Bridge the gap between students who can and cannot afford learning resources.
+
+Local-first approach - Connect students within communities for peer-to-peer book sharing.
+
+Thoughtful design - Focus on scalability and sustainability rather than just a finished product.
 
 ## Tech Stack
 
